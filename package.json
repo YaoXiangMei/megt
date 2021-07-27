@@ -1,0 +1,107 @@
+{
+  "name": "megt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "megt-commitizen": "./src/packages/commitizen/index.js",
+    "megt-commitlint": "./src/packages/commitlint/index.js",
+    "megt-eslint": "./src/packages/eslint/index.js",
+    "megt-editorconfig": "./src/packages/editorconfig/index.js",
+    "megt-gitignore": "./src/packages/gitignore/index.js",
+    "megt-changelog": "./src/packages/changelog/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0",
+    "conventional-changelog": "^3.1.24",
+    "conventional-changelog-config-spec": "^2.1.0",
+    "conventional-changelog-conventionalcommits": "^4.6.0",
+    "inquirer": "^8.0.0",
+    "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
+    "semver": "^7.3.5",
+    "shelljs": "^0.8.4"
+  },
+  "_moduleAliases": {
+    "@root": "src"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "types": {
+        "feat": {
+          "title": "feat",
+          "description": "新功能"
+        },
+        "fix": {
+          "title": "fix",
+          "description": "修复bug"
+        },
+        "style": {
+          "title": "style",
+          "description": "代码格式(不影响代码运行的格式变动，注意不是指 CSS 的修改)"
+        },
+        "refactor": {
+          "title": "refactor",
+          "description": "重构(既不是新增功能，也不是修改 bug 的代码变动)"
+        },
+        "perf": {
+          "title": "perf",
+          "description": "提升性能"
+        },
+        "revert": {
+          "title": "revert",
+          "description": "恢复上一次提交"
+        },
+        "ci": {
+          "title": "ci",
+          "description": "持续集成相关文件修改"
+        },
+        "release": {
+          "title": "release",
+          "description": "发布新版本"
+        },
+        "chore": {
+          "title": "chore",
+          "description": "构建或辅助工具的变动"
+        },
+        "docs": {
+          "title": "docs",
+          "description": "文档"
+        },
+        "test": {
+          "title": "test",
+          "description": "提交测试代码(单元测试，集成测试等)"
+        },
+        "build": {
+          "title": "release",
+          "description": "影响项目构建或依赖项修改"
+        },
+        "init": {
+          "title": "init",
+          "description": "初始提交"
+        }
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

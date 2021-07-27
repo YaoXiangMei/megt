@@ -1,0 +1,16 @@
+/**
+ * 存在的问题
+ * 1.获取不到{{owner}}和{{repository}}
+ * 2.短id无法关联到云效的issues(需要使用云效任务的长id)
+ * 3.第一个版本没有tag导致的链接问题
+ * @see[@link=https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.1.0/README.md]
+ */
+module.exports = {
+  "header": "# 更新日志",
+  "types": [{{each data.types}}
+    { "type": "{{$value.type}}", "{{$value.field}}": {{@$value.value}} }{{if $index !== data.types.length - 1}},{{/if}}{{/each}}
+  ],
+  "compareUrlFormat": "{{data.null}}",
+  "commitUrlFormat": "{{data.host}}/xxx/commit/{{data.hash}}",
+  "issueUrlFormat": "{{data.host}}/xxx/issue/{{data.id}}"
+}
