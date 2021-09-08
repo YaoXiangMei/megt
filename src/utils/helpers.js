@@ -86,10 +86,10 @@ const installDeps = function (deps = {}, { saveType = '-D', isAsync = true } = {
     },
     // 串行
     async series () {
-      for (let command of res) {
-          await exec(command)
+      for (const command of res) {
+        await exec(command)
       }
-    }
+    },
   }
 
   return Promise.all(isAsync ? hook.parallel() : [hook.series()])

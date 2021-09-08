@@ -17,8 +17,8 @@ module.exports = {
         'docs',
         'test',
         'build',
-        'init'
+        'init',
       ],
-    ]
-  }
+    ],
+  },
 }

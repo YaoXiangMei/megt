@@ -8,8 +8,8 @@ module.exports = () => {
   const defaultPreset = require.resolve('conventional-changelog-conventionalcommits')
   const config = require(resolve(process.cwd(), program.opts().preset))
   const preset = {
-      name: defaultPreset
-    }
+    name: defaultPreset,
+  }
   Object.keys(spec.properties).forEach(key => {
     if (config[key] !== undefined) preset[key] = config[key]
   })

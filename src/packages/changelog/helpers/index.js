@@ -11,7 +11,7 @@ exports.getVersion = function () {
 }
 
 exports.updateVersion = function (version) {
-  fs.writeFileSync(resolve(process.cwd(), 'package.json'), JSON.stringify({...getPkg(), version}, null, 4))
+  fs.writeFileSync(resolve(process.cwd(), 'package.json'), JSON.stringify({ ...getPkg(), version }, null, 4))
 }
 
 exports.addGitCommit = function (version) {
@@ -46,24 +46,26 @@ exports.createVersionrc = function () {
     .map(key => {
       if (['feat', 'fix'].includes(key)) {
         return {
-          'type': key,
-          'field': 'section',
-          'value': `"${commitTypes[key]['title']}"`
+          type: key,
+          field: 'section',
+          value: `"${commitTypes[key].title}"`,
         }
       } else {
         return {
-          'type': key,
-          'field': 'hidden',
-          'value': true
+          type: key,
+          field: 'hidden',
+          value: true,
         }
       }
     })
-  const content = template(resolve(`${__dirname}`, '../template/versionrc.art'), { data: {
+  const content = template(resolve(`${__dirname}`, '../template/versionrc.art'), {
+    data: {
       types,
       null: '{{NULL}}',
       host: '{{host}}',
       hash: '{{hash}}',
-      id: '{{id}}'
-  } })
+      id: '{{id}}',
+    },
+  })
   fs.writeFileSync(resolve(process.cwd(), program.opts().preset), content)
 }

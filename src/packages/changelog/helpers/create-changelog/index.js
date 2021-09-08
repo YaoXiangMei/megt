@@ -7,7 +7,6 @@ const START_OF_LAST_RELEASE_PATTERN = /(^#+ \[?[0-9]+\.[0-9]+\.[0-9]+|<a name=)/
 
 exports.createChangelog = function () {
   return new Promise((resolve, reject) => {
-
     const changelogPath = path.resolve(process.cwd(), program.opts().output)
     let oldContent = fs.existsSync(changelogPath) ? fs.readFileSync(changelogPath, 'utf-8') : ''
     const oldContentStart = oldContent.search(START_OF_LAST_RELEASE_PATTERN)
@@ -18,15 +17,16 @@ exports.createChangelog = function () {
 
     const preset = presetLoader()
     const changelogStream = conventionalChangelog({
-      preset: preset
+      preset: preset,
     })
 
     changelogStream.on('error', function (err) {
       console.error(err.stack)
       process.exit(1)
+      // eslint-disable-next-line no-unreachable
       return reject(err)
     })
-    
+
     let content = ''
 
     changelogStream.on('data', function (buffer) {

@@ -4,5 +4,5 @@ exports.VERSION_PREFIX = [
   ['prerelease', 'rc'],
   'patch',
   'minor',
-  'major'
+  'major',
 ]

@@ -10,7 +10,7 @@ exports.createPackageManager = function () {
     if (file) {
       try {
         config = JSON.parse(file)
-      } catch(err) {
+      } catch (err) {
         fs.unlinkSync(megtrcPath)
       }
     }
@@ -20,25 +20,25 @@ exports.createPackageManager = function () {
       return
     }
     inquirer
-    .prompt([
-      {
-        type: 'list',
-        name: 'packageManager',
-        message: '请选择包管理工具',
-        choices: [{
-          name: 'npm',
-          value: 'npm'
-        }, {
-          name: 'yarn',
-          value: 'yarn'
-        }]
-      }
-    ])
-    .then(data => {
-      config.packageManager = data.packageManager
-      updateMegtrc(config)
-      resolve()
-    })
-    .catch(reject)
-  }) 
+      .prompt([
+        {
+          type: 'list',
+          name: 'packageManager',
+          message: '请选择包管理工具',
+          choices: [{
+            name: 'npm',
+            value: 'npm',
+          }, {
+            name: 'yarn',
+            value: 'yarn',
+          }],
+        },
+      ])
+      .then(data => {
+        config.packageManager = data.packageManager
+        updateMegtrc(config)
+        resolve()
+      })
+      .catch(reject)
+  })
 }

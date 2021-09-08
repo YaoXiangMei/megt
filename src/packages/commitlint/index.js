@@ -17,22 +17,21 @@ const createCommitlintConfig = function () {
 ;(async () => {
   await createPackageManager()
   installDeps(devDependencies)
-  .then(() => {
-    let pkg = getPkg()
-    pkg = merge(
-      pkg,
-      {
-        husky: {
-          hooks: {
-            'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
+    .then(() => {
+      let pkg = getPkg()
+      pkg = merge(
+        pkg,
+        {
+          husky: {
+            hooks: {
+              'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
+            },
           },
         },
-      },
-    )
-    updatePkg(pkg)
-  })
-  .then(() => {
-    createCommitlintConfig()
-  })
-
+      )
+      updatePkg(pkg)
+    })
+    .then(() => {
+      createCommitlintConfig()
+    })
 })()
