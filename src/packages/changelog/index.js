@@ -25,7 +25,7 @@ const {
 const { createChangelog } = require('./helpers/create-changelog/index')
 
 helpersCommander()
-
+createVersionrc()
   ;(async () => {
     try {
       const { version } = await selectVersion()
@@ -44,7 +44,7 @@ helpersCommander()
       if (commit) {
         addGitCommit(version)
       }
-  
+
       if (isCreateChangelog) {
         await createChangelog()
         commit && updateGitLastCommit()

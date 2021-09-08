@@ -4,7 +4,7 @@ const { resolve } = require('path')
 const shelljs = require('shelljs')
 const template = require('art-template')
 const { program } = require('commander')
-const { getPkg } = require('@root/utils/helpers')
+const { getPkg, readFileSync } = require('@root/utils/helpers')
 
 exports.getVersion = function () {
   return getPkg().version
@@ -33,6 +33,8 @@ exports.removeGitTag = function (tag) {
 }
 
 exports.createVersionrc = function () {
+  const hasPresetFile = readFileSync(resolve(process.cwd(), program.opts().preset))
+  if (hasPresetFile) return
   const pkg = getPkg()
   let commitTypes = {}
   // 不支持可选链接
@@ -56,8 +58,7 @@ exports.createVersionrc = function () {
         }
       }
     })
-  console.log(types);
-  const content = template(resolve(`${__dirname}`, '../template/versionrc.art'), { data: { 
+  const content = template(resolve(`${__dirname}`, '../template/versionrc.art'), { data: {
       types,
       null: '{{NULL}}',
       host: '{{host}}',
