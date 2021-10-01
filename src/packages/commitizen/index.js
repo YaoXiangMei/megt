@@ -54,7 +54,7 @@ const types = {
     description: '提交测试代码(单元测试，集成测试等)',
   },
   build: {
-    title: 'release',
+    title: 'build',
     description: '影响项目构建或依赖项修改',
   },
   init: {
